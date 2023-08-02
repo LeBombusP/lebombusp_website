@@ -1,14 +1,14 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
+import {zodResolver} from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useForm } from "react-hook-form";
-import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {Button} from "@/components/ui/button"
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
+import {Input} from "@/components/ui/input"
+import {useForm} from "react-hook-form";
+import {useRouter} from 'next/navigation'
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 
 const formSchema = z.object({
   username: z.string().min(4, {
@@ -49,12 +49,12 @@ export function SignupForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    const { data, error } = await supabase.auth.signUp(
+    const {data, error} = await supabase.auth.signUp(
       {
         email: values.email,
         password: values.password,
         options: {
-          data: { username: values.username }
+          data: {username: values.username}
         }
       }
     )
@@ -74,7 +74,7 @@ export function SignupForm() {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <CardHeader>
-            <CardTitle className='text-center'>Hello there!</CardTitle>
+            <CardTitle className='text-center'>Hello There!</CardTitle>
             <CardDescription className='text-center'>
               Enter some credentials, verify email, and you are good to go!
             </CardDescription>
@@ -84,7 +84,7 @@ export function SignupForm() {
               <FormField
                 control={form.control}
                 name="username"
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
@@ -99,7 +99,7 @@ export function SignupForm() {
               <FormField
                 control={form.control}
                 name="email"
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
@@ -114,11 +114,11 @@ export function SignupForm() {
               <FormField
                 control={form.control}
                 name="password"
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="••••••••" {...field} />
+                      <Input type='password' placeholder="••••••••" {...field} />
                     </FormControl>
                     <FormMessage/>
                   </FormItem>
@@ -129,11 +129,11 @@ export function SignupForm() {
               <FormField
                 control={form.control}
                 name="confirm"
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel>Confirm password</FormLabel>
                     <FormControl>
-                      <Input placeholder="••••••••" {...field} />
+                      <Input type='password' placeholder="••••••••" {...field} />
                     </FormControl>
                     <FormMessage/>
                   </FormItem>
@@ -142,7 +142,7 @@ export function SignupForm() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full" type="submit">Login</Button>
+            <Button className="w-full" type="submit">Sign Up</Button>
           </CardFooter>
         </form>
       </Form>
