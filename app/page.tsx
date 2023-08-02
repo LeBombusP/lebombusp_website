@@ -1,9 +1,7 @@
-import { ModeToggle } from "@/components/dark";
-
 export default function Home() {
   return (
     <main>
-      <ModeToggle />
+      <h1>home</h1>
     </main>
   )
 }
